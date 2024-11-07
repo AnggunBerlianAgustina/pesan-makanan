@@ -1,5 +1,8 @@
 <?php
 
+/**
+ Seeder atau data dummy untuk database
+ **/
 namespace Database\Seeders;
 
 use App\Models\User;
