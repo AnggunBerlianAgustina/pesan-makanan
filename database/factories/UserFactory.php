@@ -41,4 +41,15 @@ class UserFactory extends Factory
             'email_verified_at' => null,
         ]);
     }
+
+    public function testUser(): static
+    {
+        return $this->state([
+            'name' => 'Test User',
+            'email' => 'test@example.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make('testpassword'),
+            'remember_token' => Str::random(10),
+        ]);
+    }
 }
