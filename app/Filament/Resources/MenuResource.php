@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Str;
 use Filament\Support\Enums\FontWeight;
 use App\Filament\Resources\MenuResource\Widgets\StatsOverview;
+use Filament\Actions\Action;
 
 class MenuResource extends Resource
 {
@@ -52,6 +53,7 @@ class MenuResource extends Resource
         return $table
         ->columns([
             TextColumn::make('nama_menu')
+                ->searchable()
                 ->label('Daftar Menu')
                 ->description(fn (Menu $record) => $record->keterangan)
                 ->wrap()
@@ -59,6 +61,7 @@ class MenuResource extends Resource
             TextColumn::make('harga')
                 ->money('IDR'),
             ])
+            ->searchPlaceholder('Cari')
             ->filters([
                 
             ])
@@ -70,6 +73,7 @@ class MenuResource extends Resource
                 Tables\Actions\DeleteAction::make()
                     ->label('Hapus')
                     ->modalCancelActionLabel('Batal')
+                    ->modalDescription('Apakah anda yakin ingin menghapus menu ini?')
                     ->modalSubmitActionLabel('Hapus')
                     ->successNotificationTitle('Berhasil Dihapus')
                     ->modalHeading('Hapus menu'),
