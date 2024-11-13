@@ -37,8 +37,7 @@ class MenuResource extends Resource
                 TextInput::make('nama_menu')
                     ->label('Nama Menu')
                     ->autofocus()
-                    ->suffixIcon('heroicon-s-chart-pie')
-                    ,
+                    ->suffixIcon('heroicon-s-chart-pie'),
                 TextInput::make('harga')
                     ->prefix('Rp.')
                     ->suffixIcon('heroicon-s-banknotes')
@@ -69,7 +68,7 @@ class MenuResource extends Resource
                 Tables\Actions\EditAction::make()
                     ->modalCancelActionLabel('Batal')
                     ->modalSubmitActionLabel('Simpan')
-                    ->successNotificationTitle('Berhasil diedit'),
+                    ->successNotificationTitle('Perubahan Disimpan'),
                 Tables\Actions\DeleteAction::make()
                     ->label('Hapus')
                     ->modalCancelActionLabel('Batal')
