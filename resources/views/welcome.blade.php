@@ -28,8 +28,8 @@
 
             <!-- Navbar Links -->
             <div>
-                <a href="{{ route('login') }}" class="text-gray-600 hover:text-gray-800 mx-4">Login</a>
-                <a href="{{ route('register') }}" class="text-gray-600 hover:text-gray-800 mx-4">Register</a>
+                <a href="{{ url('/admin/login') }}" class="text-gray-600 hover:text-gray-800 mx-4">Login</a>
+                <a href="{{ url('/admin/register') }}" class="text-gray-600 hover:text-gray-800 mx-4">Register</a>
             </div>
         </div>
     </nav>
