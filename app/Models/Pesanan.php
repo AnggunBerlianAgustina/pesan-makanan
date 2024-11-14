@@ -14,6 +14,7 @@ class pesanan extends Model
     use HasFactory;
 
     protected $fillable = [
+        'id_pesanan',
         'nama_menu',
         'nama_pemesan',
         'keterangan',
