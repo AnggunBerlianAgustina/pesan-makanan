@@ -1,0 +1,55 @@
+/* Navbar Styles */
+.navbar {
+    background-color: #ff0000;
+}
+.navbar-brand, .nav-link {
+    color: #fff !important;
+}
+.nav-link:hover {
+    color: #ffc107 !important;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #f8f9fa;
+    padding: 20px 0;
+    text-align: center;
+    margin-top: 30px;
+}
+
+/* Card Styles */
+.card:hover {
+    transform: scale(1.05);
+    transition: all 0.3s ease-in-out;
+}
+
+/* Button Styles */
+.btn-primary {
+    background-color: #ff0000;
+    border: none;
+}
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+/* Container Padding */
+.container {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+/* Table Styles */
+.table th, .table td {
+    vertical-align: middle;
+}
+
+/* Checkout Button */
+.btn-checkout {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    transition: background-color 0.3s;
+}
+.btn-checkout:hover {
+    background-color: #218838;
+}
