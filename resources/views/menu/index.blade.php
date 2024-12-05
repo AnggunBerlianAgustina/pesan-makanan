@@ -1,26 +1,34 @@
 @extends('layouts.app')
 
-@section('title', 'Daftar Menu')
-
 @section('content')
-    <h1 class="text-center mb-5">Silahkan Pilih Menu</h1>
+<div class="container">
+    <h1 class="mb-4">Menu</h1>
+
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
     <div class="row">
-        @foreach($menus as $menu)
+        @forelse($menus as $menu)
             <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <div class="card-body d-flex flex-column">
+                <div class="card">
+                    <div class="card-body">
                         <h5 class="card-title">{{ $menu->nama_menu }}</h5>
                         <p class="card-text">{{ $menu->keterangan }}</p>
-                        <p class="card-text fw-bold">Rp{{ number_format($menu->harga, 0, ',', '.') }}</p>
-                        <form action="{{ route('cart.add') }}" method="POST" class="mt-auto">
+                        <p class="card-text"><strong>Rp {{ number_format($menu->harga, 0, ',', '.') }}</strong></p>
+                        <form action="{{ route('menu.add_to_cart') }}" method="POST">
                             @csrf
                             <input type="hidden" name="menu_id" value="{{ $menu->id }}">
-                            <input type="number" name="quantity" min="1" class="form-control mb-3" placeholder="Jumlah" required>
-                            <button type="submit" class="btn btn-primary w-100">Tambah ke Keranjang</button>
+                            <button type="submit" class="btn btn-primary">Tambah ke Keranjang</button>
                         </form>
                     </div>
                 </div>
             </div>
-        @endforeach
+        @empty
+            <p class="text-center">Belum ada menu tersedia.</p>
+        @endforelse
     </div>
+</div>
 @endsection

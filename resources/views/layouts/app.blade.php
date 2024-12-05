@@ -22,7 +22,7 @@
                         <a class="nav-link" href="{{ route('menu.index') }}">Menu</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('cart.view') }}">Keranjang</a>
+                        <a class="nav-link" href="/keranjang">Keranjang</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Profil</a>
