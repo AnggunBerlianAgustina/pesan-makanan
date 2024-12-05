@@ -2,33 +2,55 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Models\Pesanan;
 use App\Models\Menu;
-use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
-    public function addToCart(Request $request)
-{
-    if (!auth()->check()) {
-        return redirect()->route('login')->with('error', 'Silakan login untuk menambahkan ke keranjang.');
+    // Menampilkan keranjang
+    public function index()
+    {
+        $cart = session()->get('cart', []);
+        return view('cart.index', compact('cart'));
     }
 
-    $menu = Menu::findOrFail($request->menu_id);
-
-    $pesanan = new Pesanan();
-    $pesanan->nama_menu = $menu->nama_menu; // Mengambil nama menu dari tabel menu
-    $pesanan->nama_pemesan = auth()->user()->name; // Mengambil nama pemesan dari user yang login
-    $pesanan->keterangan = $request->input('keterangan', ''); // Jika ada keterangan
-    $pesanan->status_pesanan = 'pending'; // Status default
-    $pesanan->save();
-
-    return redirect()->route('cart.view')->with('success', 'Menu berhasil ditambahkan ke keranjang.');
-}
-
-    public function viewCart()
+    // Menghapus item dari keranjang
+    public function remove(Request $request)
     {
-        $cartItems = Pesanan::where('nama_pemesan', auth()->user()->name)->get();
-        return view('cart.index', compact('cartItems'));
+        $request->validate(['menu_id' => 'required']);
+
+        $cart = session()->get('cart', []);
+        $menuId = $request->menu_id;
+
+        if (isset($cart[$menuId])) {
+            unset($cart[$menuId]);
+            session()->put('cart', $cart);
+        }
+
+        return redirect()->route('cart.index')->with('success', 'Item berhasil dihapus dari keranjang.');
+    }
+
+    // Checkout: Simpan pesanan ke database
+    public function checkout(Request $request)
+    {
+        $cart = session()->get('cart', []);
+
+        if (empty($cart)) {
+            return redirect()->route('cart.index')->with('error', 'Keranjang kosong.');
+        }
+
+        foreach ($cart as $item) {
+            Pesanan::create([
+                'user_id' => auth()->id(),
+                'menu_id' => $item['id'],
+                'keterangan' => null, // Bisa diubah untuk menerima input dari buyer
+                'status_pesanan' => 'pending',
+            ]);
+        }
+
+        session()->forget('cart'); // Kosongkan keranjang
+
+        return redirect()->route('menu.index')->with('success', 'Pesanan berhasil dibuat.');
     }
 }

@@ -12,13 +12,25 @@ use Illuminate\Database\Eloquent\Model;
 class Pesanan extends Model
 {
     use HasFactory;
-
-    // Tidak perlu menyertakan 'id' di sini karena otomatis diisi oleh database
+    
     protected $fillable = [
-        'nama_menu',
-        'nama_pemesan',
+        'user_id',
+        'menu_id',
         'keterangan',
         'status_pesanan',
     ];
+
+    // Relasi ke User
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    // Relasi ke Menu
+    public function menu()
+    {
+        return $this->belongsTo(Menu::class);
+    }
 }
+
 

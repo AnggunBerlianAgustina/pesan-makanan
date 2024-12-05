@@ -18,4 +18,10 @@ class Menu extends Model
         'keterangan',
         'harga'
     ];
+
+    public function pesanans()
+{
+    return $this->hasMany(Pesanan::class);
+}
+
 }
