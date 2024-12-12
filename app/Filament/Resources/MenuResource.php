@@ -30,6 +30,8 @@ class MenuResource extends Resource
 
     protected static ?string $pluralLabel = 'Daftar Menu';
 
+    protected static ?string $slug = 'daftarmenu';
+
     public static function form(Form $form): Form
     {
         return $form

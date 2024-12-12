@@ -19,7 +19,7 @@ class PembayaranFactory extends Factory
         return [
             'no_menu' => $this->faker->uuid(),
             'no_pesanan' => $this->faker->uuid(),
-            'nama_pemesan' => $this->faker->firstName(),
+            'nama_pemesan' => $this->faker->name(),
             'jumlah_pembayaran' => $this->faker->numberBetween($min = 30000, $max = 1000000),
             'status' => $this->faker->randomElement(['lunas', 'belum lunas']),
         ];

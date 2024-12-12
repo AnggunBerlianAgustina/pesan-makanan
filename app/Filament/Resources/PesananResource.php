@@ -27,6 +27,8 @@ class PesananResource extends Resource
 
     protected static ?string $pluralLabel = 'Riwayat Pesanan';
 
+    protected static ?string $slug = 'pesanan';
+
     public static function form(Form $form): Form
     {
         return $form
