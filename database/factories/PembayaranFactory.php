@@ -17,11 +17,11 @@ class PembayaranFactory extends Factory
     public function definition(): array
     {
         return [
-            'no_menu' => $this->faker->uuid(),
-            'no_pesanan' => $this->faker->uuid(),
+            'no_menu' => $this->faker->numberBetween($min = 1, $max = 50),
+            'no_pesanan' => $this->faker->unique()->bothify('ID-######'),
             'nama_pemesan' => $this->faker->name(),
             'jumlah_pembayaran' => $this->faker->numberBetween($min = 30000, $max = 1000000),
-            'status' => $this->faker->randomElement(['lunas', 'belum lunas']),
+            'status' => $this->faker->randomElement(['LUNAS', 'PENDING']),
         ];
     }
 }

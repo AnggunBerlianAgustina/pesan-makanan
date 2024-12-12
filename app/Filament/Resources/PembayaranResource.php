@@ -13,6 +13,8 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Tables\Filters\SelectFilter;
+
 
 class PembayaranResource extends Resource
 {
@@ -38,11 +40,12 @@ class PembayaranResource extends Resource
     {
         return $table
             ->columns([
+                TextColumn::make('no_pesanan')
+                ->sortable()
+                ->label('Nomor Pesanan'),
                 TextColumn::make('no_menu')
                 ->searchable()
                 ->label('Nomor Menu'),
-                TextColumn::make('no_pesanan')
-                ->label('No Pesanan'),
                 TextColumn::make('nama_pemesan')
                 ->label('Nama Pemesan'),
                 TextColumn::make('jumlah_pembayaran')
@@ -51,24 +54,29 @@ class PembayaranResource extends Resource
                 ->label('Status Pembayaran')
                 ->badge()
                 ->color(fn (string $state): string => match ($state) {
-                    'belum lunas' => 'danger',
-                    'lunas' => 'success',
+                    'PENDING' => 'danger',
+                    'LUNAS' => 'success',
                 })
                 ->sortable(),
             ])
             ->searchPlaceholder('Cari')
 
             ->filters([
-                //
+                SelectFilter::make('status')
+                ->options([
+                    'PENDING' => 'PENDING',
+                    'LUNAS' => 'LUNAS',
+                ])
+            ->attribute('status')
             ])
             ->actions([
                 // Tables\Actions\EditAction::make(),
                 // Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
+                // Tables\Actions\BulkActionGroup::make([
+                //     Tables\Actions\DeleteBulkAction::make(),
+                // ]),
             ]);
     }
 

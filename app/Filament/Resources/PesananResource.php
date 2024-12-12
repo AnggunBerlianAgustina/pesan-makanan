@@ -46,7 +46,7 @@ class PesananResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('id')
+                TextColumn::make('id_pesanan')
                     ->label('Nomor Pesanan')
                     ->searchable(),
                 TextColumn::make('nama_menu'),
