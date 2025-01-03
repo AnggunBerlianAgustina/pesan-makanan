@@ -6,6 +6,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\PesananController;
 
 Route::get('/', function () {
     return view('welcome'); 
@@ -22,4 +23,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/keranjang/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
 });
 
-
+//pesananbuyer
+Route::middleware(['auth'])->group(function () {
+    Route::get('/pesanan', [PesananController::class, 'index'])->name('pesanan.index');
+});

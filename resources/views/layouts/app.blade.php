@@ -25,6 +25,9 @@
                         <a class="nav-link" href="/keranjang">Keranjang</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="{{ route('pesanan.index') }}">Pesanan</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="#">Profil</a>
                     </li>
                 </ul>
