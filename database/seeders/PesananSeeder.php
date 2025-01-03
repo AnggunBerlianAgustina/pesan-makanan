@@ -16,6 +16,6 @@ class PesananSeeder extends Seeder
      */
     public function run(): void
     {
-        Pesanan::factory(10)->create();
+        Pesanan::truncate();
     }
 }

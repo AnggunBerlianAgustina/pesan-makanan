@@ -1,4 +1,4 @@
-@extends('layouts.app') <!-- Ganti dengan layout utama Anda -->
+@extends('layouts.app')
 
 @section('content')
 <div class="container">
