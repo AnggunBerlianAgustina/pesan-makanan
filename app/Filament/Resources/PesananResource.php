@@ -47,8 +47,12 @@ class PesananResource extends Resource
                 TextColumn::make('id')
                     ->label('Nomor Pesanan')
                     ->searchable(),
-                TextColumn::make('nama_menu'),
-                TextColumn::make('nama_pemesan'),
+                TextColumn::make('menu.nama_menu')->label('Nama Menu'),              
+                TextColumn::make('user.name')
+                    ->label('Pemesan')
+                    ->sortable()
+                    ->searchable()
+                    ->default('-'),
                 TextColumn::make('keterangan'),
                 TextColumn::make('status_pesanan')
                     ->label('Status Pesanan')
@@ -57,7 +61,10 @@ class PesananResource extends Resource
                         'Baru' => 'gray',
                         'Proses' => 'danger',
                         'Selesai' => 'success',
+                        'pending' => 'warning', // Tambahkan case 'pending'
+                        default => 'gray', // Hindari error jika ada nilai lain yang belum dikenali
                     })
+                    
                     ->sortable(),
                 TextColumn::make('updated_at')
                     ->label('Perubahan Terakhir')

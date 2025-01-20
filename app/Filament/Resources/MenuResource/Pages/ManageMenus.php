@@ -20,6 +20,13 @@ class ManageMenus extends ManageRecords
                 ->modalHeading('Tambah Menu Baru')
                 ->modalCancelActionLabel('Batal')
                 ->createAnother(false),
+
+            Actions\Action::make('Lihat Menu')
+                ->label('view')
+                ->color('success')
+                ->icon('heroicon-o-eye')
+                ->url(route('menu.index')) // Pastikan route 'menu.index' sudah didefinisikan
+                ->openUrlInNewTab(), // Buka di tab baru
         ];
     }
 

@@ -45,10 +45,10 @@ class UserFactory extends Factory
     public function testUser(): static
     {
         return $this->state([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+            'name' => 'admin',
+            'email' => 'admin@admin.com',
             'email_verified_at' => now(),
-            'password' => Hash::make('testpassword'),
+            'password' => Hash::make('adminadmin'),
             'remember_token' => Str::random(10),
         ]);
     }

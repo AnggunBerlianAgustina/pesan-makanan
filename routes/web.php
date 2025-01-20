@@ -13,17 +13,17 @@ Route::get('/', function () {
 });
 
 #menu&cart
-Route::middleware(['auth'])->group(function () {
+
     Route::get('/menu', [MenuController::class, 'index'])->name('menu.index');
     Route::post('/menu/add-to-cart', [MenuController::class, 'addToCart'])->name('menu.add_to_cart');
-});
-Route::middleware(['auth'])->group(function () {
+
+
     Route::get('/keranjang', [CartController::class, 'index'])->name('cart.index');
     Route::post('/keranjang/remove', [CartController::class, 'remove'])->name('cart.remove');
     Route::post('/keranjang/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
-});
+
 
 //pesananbuyer
-Route::middleware(['auth'])->group(function () {
+
     Route::get('/pesanan', [PesananController::class, 'index'])->name('pesanan.index');
-});
+

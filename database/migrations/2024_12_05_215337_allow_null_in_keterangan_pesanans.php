@@ -13,10 +13,4 @@ class AllowNullInKeteranganPesanans extends Migration
         });
     }
 
-    public function down()
-    {
-        Schema::table('pesanans', function (Blueprint $table) {
-            $table->string('keterangan')->nullable(false)->change(); // Kembalikan ke non-null
-        });
-    }
 }
